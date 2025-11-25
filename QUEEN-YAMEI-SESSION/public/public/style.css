@@ -1,0 +1,18 @@
+const pairBtn = document.getElementById("pairBtn");
+const pairCode = document.getElementById("pairCode");
+const qrBtn = document.getElementById("qrBtn");
+const qrImage = document.getElementById("qrImage");
+
+pairBtn.addEventListener("click", async () => {
+    pairCode.textContent = "Génération...";
+    const res = await fetch("/pair");
+    const data = await res.json();
+    pairCode.textContent = data.pairCode;
+});
+
+qrBtn.addEventListener("click", async () => {
+    qrImage.src = "";
+    const res = await fetch("/qr");
+    const data = await res.json();
+    qrImage.src = data.qr;
+});
